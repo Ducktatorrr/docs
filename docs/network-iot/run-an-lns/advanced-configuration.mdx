@@ -10,15 +10,16 @@ slug: /iot/run-an-lns/advanced-configuration
 
 import useBaseUrl from '@docusaurus/useBaseUrl'
 
-## Session Key Filter (SKF)
+## Session Key Filter (SKF) {#session-key-filter}
 
 Session Key Filters (SKF) regulate device traffic on specific devAddrs by utilizing LoRaWAN device
 session keys. They establish conditions to either permit or restrict data flow based on the
-configured session keys.
+configured session keys. It essentially allows the LNS operators to accept and reject traffic on a
+device (session) level.
 
 In this example scenario, consider two device addresses (devAddr) 1 and 2:
 
-- **Provided Session Key for devAddr 1:**  
+- **Provided Session Key for devAddr 1 and "ignore empty skf" = false:**  
   Only allows traffic through devAddr 1 if it passes Message Integrity Code (MIC) checks.
 - **No Session Key for devAddr 2 and "ignore empty skf" = false:**  
   All traffic is allowed through devAddr 2 without MIC checks.
@@ -62,6 +63,12 @@ This service includes several utilities including EUI management and per-tenant 
 
 Find the service on GitHub [here](https://github.com/disk91/helium-chirpstack).
 
+### Chirpstack-hpr by Bones
+
+This service includes several utilities including EUI and SKF management.
+
+Find the service on GitHub [here](https://github.com/ccall48/chirpstack-hpr)
+
 ## Config Service Interaction
 
 The Config Service can be used to manage an OUI and devAddr. There are two ways to interact with the
@@ -75,3 +82,18 @@ Config Service:
 ## Hotspot Location Data
 
 Hotspot location data can be requested from the Config Service using either the CLI or GRPC APIs.
+
+## Add and Remove Delegate Keys
+
+Note that only owner key can perform the actions below. OUI owners can add
+delegate keys by running
+
+```bash
+helium-config-service-cli org update delegate-add --pubkey <public key of the delegate key pair you are trying to add> --keypair <relative path of your **owner** keypair path> --commit
+```
+
+OUI owners can remove delegate keys by running
+
+```bash
+helium-config-service-cli org update delegate-remove --pubkey <public key of the delegate key pair you are trying to remove> --keypair <relative path of your **owner** keypair path> --commit
+```

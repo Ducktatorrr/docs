@@ -8,7 +8,7 @@ image: https://docs.helium.com/img/link-image.png
 slug: /iot/run-an-lns/fund-an-oui-using-hnt
 ---
 
-Whether facilitated through a third-party or acquired directly through the network, all data
+Whether facilitated through a third party or acquired directly through the network, all data
 transfer on Helium requires [Data Credits](/tokens/data-credit). This guide will illustrate two
 methods of directly converting HNT into DC and subsequently delegating it for use by an OUI.
 
@@ -20,7 +20,7 @@ The `price` command is a helpful tool for determining the amount of HNT required
 amount of DC. For example, this command will output the amount of HNT required to fund 1M DC ($10).
 
 ```sh
-helium-wallet dc price 1000000
+helium-wallet dc price 10
 ```
 
 ### Swap HNT to DC
@@ -31,16 +31,16 @@ where further transactions can be issued on them — often the same account wher
 minted from.
 
 ```sh
-helium-wallet dc mint --payee <Account Address> --dc 1000000
+helium-wallet dc mint --dc 1000000 --commit
 ```
 
 ### Delegate DC To The OUI
 
-After the DC is minted, it can be delegated to the OUI. The delegation is issued to the router key
-of the OUI.
+After the DC is minted, it can be delegated to the OUI. The delegation is issued to the payer key of
+the OUI.
 
 ```sh
-helium-wallet dc delegate iot <Router Key> 1000000 --commit
+helium-wallet dc delegate iot <Payer Key> 1000000 --commit
 ```
 
 ## Funding an OUI Using The Helium Wallet App
@@ -64,9 +64,9 @@ Wallet app.
 1. Tap the DC balance.
 1. Tap `Delegate`.
 1. Select the IOT Network.
-1. Enter the router key of the OUI as the address.
+1. Enter the payer key of the OUI as the address.
 1. Enter the amount of DC to delegate.
 1. Swipe to Delegate.
 
-You now have a funded OUI, it's now time to configure and deploy your LNS
-[here](configure-chirpstack).
+The OUI is now funded. It's now time to configure and deploy the LNS following the
+[Chirpstack Configuration](configure-chirpstack) guides.

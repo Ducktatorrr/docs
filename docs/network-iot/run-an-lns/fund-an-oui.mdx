@@ -50,13 +50,13 @@ The LNS operator has a choice of how many reports they would like to buy.
 
 Multibuy sets the maximum number of Hotspots that can deliver their receipt of a message. For
 instance, for a multibuy value of 10 on a device that only receives 8 reports, the OUI would be
-charged 12 DC ($0.00008 USD). This assumes the payload was less than 24b.
+charged 8 DC ($0.00008 USD). This assumes the payload was less than 24b.
 
 Multibuy is helpful in several scenarios where knowing a wide selection of available Hotspots is
 valuable:
 
 - **Ensuring successful downlinks.**  
-  Helium reports Hotspots responses in chronological order. This can be challenging in scheduling
+  Helium reports Hotspots' responses in chronological order. This can be challenging in scheduling
   downlinks because the first Hotspot to report may not necessarily be the closest or have the
   strongest RSSI/SNR attributes. This is important for downlink scenarios such as Class-C devices,
   ADR, confirmed uplinks, or standard downlinks on Class-A devices. Leveraging multibuy is an easy
@@ -91,7 +91,7 @@ https://api.spherepay.co/v1/solanaDepinSession/dcAmount/<Escrow Account>
 
 ## Minimum Balance
 
-The Helium Packet Router enforces a minimum balance of 35,000,000 Data Credits ($35). This minimum
+The Helium Packet Router enforces a minimum balance of 3,500,000 Data Credits ($35). This minimum
 balance is required to ensure that all Hotspots are compensated for their work on the network in the
 case that the LNS transfers data more quickly than can be deducted from the OUI's balance. Token
 balances cannot become negative, so this $35 buffer keeps network payments balanced.
